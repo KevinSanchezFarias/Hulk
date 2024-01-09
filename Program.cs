@@ -4,22 +4,18 @@ static class Program
 {
     public static void Main()
     {
+        Console.Write("> ");
         _ = new Interpreter();
-        foreach (var item in Interpreter.Interpret(ReadLines("./exp.hk")))
+        while(true)
         {
-            Console.WriteLine(item);
+            string item = Console.ReadLine();
+            if(item == "")
+            {
+                break;
+            }
+            Console.WriteLine("> {0}", Interpreter.Interpret(item)[0]);
+            Console.Write("> ");
         }
     }
-    private static string ReadLines(string path)
-    {
-        string fileContents = File.ReadAllText(path);
-        string[] lines = fileContents.Split('\n');
-
-        string result = "";
-        foreach (string line in lines)
-        {
-            result += line;
-        }
-        return result;
-    }
+    
 }
